@@ -1,13 +1,14 @@
 import React from 'react'
 
-const Answer = () => {
+type TAns = {
+  ansP: string
+}
+const Answer = ({ansP}:TAns) => {
   return (
-    <div>
-        <label className='btn btn-lg btn-secondary m-1'>
-            <input type='radio' name='options' id='option1' />
-            {/* {answer}  */}Answer
-        </label>
-    </div>
+    <label className='btn btn-lg btn-secondary m-1'>
+      <input type='radio' name='options' id='option1' />
+      <span dangerouslySetInnerHTML={{__html: ansP}} />
+    </label>
   )
 }
 

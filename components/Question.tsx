@@ -1,9 +1,14 @@
 import React from 'react'
+import { TQuestion } from '@/config/Types'
 
-const Question = () => {
+type TQues = {
+    ques: string
+}
+
+const Question = ({ques}:TQues) => {
     return (
         <div>
-            <h3 className='card-title'> Question willbe shown here</h3>
+            <h3 className='card-title'> {ques}</h3>
         </div>
     )
 }
