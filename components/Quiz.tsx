@@ -7,8 +7,8 @@ import Question from './Question'
 const Quiz = () => {
 
     const [questions, setQuestions] = useState<TQuestion>()
-    // const [count, setCount] = useState(0)
-    const count = 0
+    const [count, setCount] = useState(0)
+    const [score, setScore] = useState(0)
     // const answers = [1, 2, 3, 4]
     // const result = answers.map((ansE, index) => <Answer answerP={ansE} key={index} />)
 
@@ -24,12 +24,20 @@ const Quiz = () => {
         }
 
         console.log(questions)
-    }, [questions])
+    }, [questions, count])
     if (!questions) return <p className='text-light text-muted'>Loading</p>
 
     const answers: string[] = [...questions[count].incorrect_answers, questions[count].correct_answer]
     // console.log(answers)
-    const randomAns =  answers.sort(() => Math.random() - 0.5)
+    const randomAns = answers.sort(() => Math.random() - 0.5)
+
+    const checkAnswer = (selectedAnswer) => {
+        if (selectedAnswer === questions[count].correct_answer) {
+            setScore(score + 10)
+        }
+
+        setCount(count + 1)
+    }
 
     return (
         <div className='card-body'>
@@ -41,7 +49,9 @@ const Quiz = () => {
                     {
                         randomAns.map((ansElem, index) =>
                         (
-                            <Answer ansP={ansElem} onAnswer={(ansElem) => checkAnswer(ansElem)} key={index} />
+                            <Answer ansP={ansElem}
+                                onAnswer={(selectedAnswer) => checkAnswer(selectedAnswer)}
+                                key={index} />
                         )
                         )
                     }
