@@ -1,9 +1,31 @@
 import Quiz from '@/components/Quiz'
 import Head from 'next/head'
 import 'bootstrap/dist/css/bootstrap.css'
+import { useState } from 'react'
 
 
 export default function Home() {
+  const [finished, setFinished] = useState(false)
+  const [result, setResult] = useState(0)
+
+  if (finished) {
+    return (
+      <div className='container'>
+        <div className='row'>
+          <div className='col-md-12'>
+            <div className='card text-white bg-dark mb-3 shadow border-black rounded'>
+              <div className='card-header'>
+                <h2>Result</h2>
+                <h2>{result}</h2>
+                <button onClick={() => setFinished(false)}>Test Again</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <>
       <Head>
@@ -19,7 +41,10 @@ export default function Home() {
               <div className='card-header'>
                 <h2>Welcome to Quiz</h2>
               </div>
-              <Quiz />
+              <Quiz 
+              onFinish={(finished) => setFinished(finished)} 
+              getResult={(result) => setResult(result)}
+              />
             </div>
           </div>
         </div>

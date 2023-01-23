@@ -4,7 +4,8 @@ export type TQuestion = {
     question: string ;
     correct_answer?: string ;
     incorrect_answers?: string[] ;
-    // [count:number]: string;
+    // count: number
+    // [index:number]: string;
 }
 
 export type TUsers = {

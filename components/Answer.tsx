@@ -7,7 +7,12 @@ type TAns = {
 const Answer = ({ansP, onAnswer}:TAns) => {
   return (
     <label className='btn btn-lg btn-secondary m-1'>
-      <input type='radio' name='options' id='option1' />
+      <input 
+      type='radio' 
+      name='options' 
+      id='option1' 
+      onClick={() => onAnswer(ansP)}
+      />
       <span dangerouslySetInnerHTML={{__html: ansP}} />
     </label>
   )

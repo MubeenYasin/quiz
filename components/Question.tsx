@@ -8,7 +8,7 @@ type TQues = {
 const Question = ({ques}:TQues) => {
     return (
         <div>
-            <h3 className='card-title'> {ques}</h3>
+            <h3 className='card-title' dangerouslySetInnerHTML={{__html: ques}} />
         </div>
     )
 }

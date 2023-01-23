@@ -4,7 +4,10 @@ import React, { useEffect, useState } from 'react'
 import Answer from './Answer'
 import Question from './Question'
 
-const Quiz = () => {
+type TQues = {
+    onFinish: boolean
+}
+const Quiz = ({onFinish, getResult}) => {
 
     const [questions, setQuestions] = useState<TQuestion>()
     const [count, setCount] = useState(0)
@@ -23,7 +26,7 @@ const Quiz = () => {
             getApi()
         }
 
-        console.log(questions)
+        // console.log(questions)
     }, [questions, count])
     if (!questions) return <p className='text-light text-muted'>Loading</p>
 
@@ -35,12 +38,18 @@ const Quiz = () => {
         if (selectedAnswer === questions[count].correct_answer) {
             setScore(score + 10)
         }
-
-        setCount(count + 1)
+        if (count < questions.length - 1) {
+            setCount(count + 1)
+        } else {
+            onFinish(true)
+            getResult(score)
+        }
     }
 
     return (
         <div className='card-body'>
+            {/* <h3>{score}</h3> */}
+            <h3>Question No. {count + 1}</h3>
             <Question ques={questions[count].question} />
             <div className='card-text'>
                 <div className='btn-group btn-group-vertical btn-group-toggle w-100'
